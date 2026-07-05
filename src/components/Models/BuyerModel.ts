@@ -1,7 +1,7 @@
 import { IBuyer, TBuyerErrors } from '../../types';
 
 export class BuyerModel {
-    data: Partial<IBuyer> = {};
+    private data: Partial<IBuyer> = {};
 
     setData(data: Partial<IBuyer>): void {
         this.data = {
