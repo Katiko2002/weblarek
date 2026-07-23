@@ -1,13 +1,18 @@
 import { IBuyer, TBuyerErrors } from '../../types';
+import { IEvents } from '../base/Events';
 
 export class BuyerModel {
     private data: Partial<IBuyer> = {};
+
+    constructor(private events: IEvents) {}
 
     setData(data: Partial<IBuyer>): void {
         this.data = {
             ...this.data,
             ...data,
         };
+
+        this.events.emit('buyer:changed');
     }
 
     getData(): Partial<IBuyer> {
@@ -16,6 +21,7 @@ export class BuyerModel {
 
     clear(): void {
         this.data = {};
+        this.events.emit('buyer:changed');
     }
 
     validate(): TBuyerErrors {
